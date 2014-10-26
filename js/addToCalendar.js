@@ -18,13 +18,17 @@ function createAddToGoogleCalendarLink(shift){
 	var startDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.startHour, timeParts.startMinutes, 0, 0);
 	var endDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.endHour, timeParts.endMinutes, 0, 0);
 
-	if (endDate.valueOf() < startDate.valueOf()) {	
+	if (shiftIncludesMidnight(startDate, endDate)) {	
 		endDate = endDate.addDays(1);
 	}	
 	
 	var event = new GoogleCalendarEvent(startDate, endDate, 'Shift');
 	addToCalendar.setAttribute('href', event.toLink());
 	return addToCalendar;
+}
+
+function shiftIncludesMidnight(startDate, endDate){
+	return endDate.valueOf() < startDate.valueOf()
 }
 
 function getTimeParts(shift){
