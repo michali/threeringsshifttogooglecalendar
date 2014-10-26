@@ -5,7 +5,8 @@
   "version": "1.0",
   "permissions": [
     "https://www.3r.org.uk/",
-	"https://www.google.com/calendar"
+	"https://www.google.com/calendar",
+    "storage"
   ],
   "content_scripts": [
     {
