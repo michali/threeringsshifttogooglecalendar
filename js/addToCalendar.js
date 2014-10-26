@@ -14,12 +14,9 @@ var numberPattern = /\d+/g;
 function createAddToGoogleCalendarLink(shift){
 	var addToCalendar = document.createElement('a');
 	addToCalendar.setAttribute('title', 'Add to Google Calendar');
-	var containerWithShiftDateTimeInfo = shift.parentNode.parentNode.parentNode.parentNode;
-	var shiftTimeInfoId = containerWithShiftDateTimeInfo.id;
-	var allNumbers = shiftTimeInfoId.match(numberPattern);
-	var timeParts = getTimeParts(allNumbers);
-	var startDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.startHour, timeParts.startMinutes,0,0);
-	var endDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.endHour, timeParts.endMinutes,0,0);
+	var timeParts = getTimeParts(shift);
+	var startDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.startHour, timeParts.startMinutes, 0, 0);
+	var endDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.endHour, timeParts.endMinutes, 0, 0);
 
 	if (endDate.valueOf() < startDate.valueOf()) {	
 		endDate = endDate.addDays(1);
@@ -30,16 +27,23 @@ function createAddToGoogleCalendarLink(shift){
 	return addToCalendar;
 }
 
-function getTimeParts(allNumbers){
+function getTimeParts(shift){
+	var dateTimeElements = getAllDateTimeElementsFromShiftContainer(shift);
 	return {
-		startHour: allNumbers[0], 
-		startMinutes: allNumbers[1], 
-		endHour: allNumbers[2], 
-		endMinutes: allNumbers[3],
-		startYear: allNumbers[4],
-		startMonth: allNumbers[5],
-		startDay: allNumbers[6]
+		startHour: dateTimeElements[0], 
+		startMinutes: dateTimeElements[1], 
+		endHour: dateTimeElements[2], 
+		endMinutes: dateTimeElements[3],
+		startYear: dateTimeElements[4],
+		startMonth: dateTimeElements[5],
+		startDay: dateTimeElements[6]
 	}
+}
+
+function getAllDateTimeElementsFromShiftContainer(shift) {
+	var containerWithShiftDateTimeInfo = shift.parentNode.parentNode.parentNode.parentNode;
+	var shiftTimeInfoId = containerWithShiftDateTimeInfo.id;
+	return shiftTimeInfoId.match(numberPattern);
 }
 
 function loadAddToCalendarImage(){
