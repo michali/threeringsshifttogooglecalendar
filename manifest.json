@@ -10,8 +10,8 @@
   "content_scripts": [
     {
 	  "matches": ["https://www.3r.org.uk/rota*"],
-      "js": ["addToCalendar.js"]
+      "js": ["js/datePrototypeExtensions.js", "js/googleCalendarEvent.js", "js/addToCalendar.js"]
     }
   ],
-  "web_accessible_resources": ["googlecalendar.png"]
+  "web_accessible_resources": ["images/googlecalendar.png"]
 }
