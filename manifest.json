@@ -13,5 +13,6 @@
       "js": ["js/datePrototypeExtensions.js", "js/googleCalendarEvent.js", "js/addToCalendar.js"]
     }
   ],
-  "web_accessible_resources": ["images/googlecalendar.png"]
+  "web_accessible_resources": ["images/googlecalendar.png"],
+  "options_page": "options.html"
 }
