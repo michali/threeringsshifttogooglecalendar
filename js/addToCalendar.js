@@ -22,13 +22,13 @@ function createAddToGoogleCalendarLink(shift){
 		endDate = endDate.addDays(1);
 	}	
 	
-	var defaultEventSubject;
-	chrome.runtime.sendMessage({method: "getDefaultEventSubject"}, function(response) {
-		defaultEventSubject = response.defaultEventSubject;
-		var event = new GoogleCalendarEvent(startDate, endDate, defaultEventSubject);
+	chrome.storage.sync.get({
+		eventSubject: 'Shift'
+	  }, function(items) {
+		var event = new GoogleCalendarEvent(startDate, endDate, items.eventSubject);
 		addToCalendar.setAttribute('href', event.toLink());
-	});
-		
+	  });
+ 		
 	return addToCalendar;
 }
 

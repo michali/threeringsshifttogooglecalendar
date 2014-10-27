@@ -15,9 +15,5 @@
     }
   ],
   "web_accessible_resources": ["images/googlecalendar.png"],
-  "options_page": "options.html",
-  "background": {
-    "scripts": ["js/background.js"],
-	"persistent": false
-  }
+  "options_page": "options.html"
 }
