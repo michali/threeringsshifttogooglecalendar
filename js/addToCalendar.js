@@ -9,8 +9,6 @@ function addToCalendarOption(){
 	}
 }
 
-var numberPattern = /\d+/g;
-
 function createAddToGoogleCalendarLink(shift){
 	var addToCalendar = document.createElement('a');
 	addToCalendar.setAttribute('title', 'Add to Google Calendar');
@@ -35,6 +33,8 @@ function createAddToGoogleCalendarLink(shift){
 function shiftIncludesMidnight(startDate, endDate){
 	return endDate.valueOf() < startDate.valueOf()
 }
+
+var numberPattern = /\d+/g;
 
 function getTimeParts(shift){
 	var dateTimeElements = getAllDateTimeElementsFromShiftContainer(shift);
