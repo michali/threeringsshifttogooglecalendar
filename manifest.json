@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Three Rings shift to Google Calendar",
-  "description": "Extension that adds functionality to export your shifts booked on the Three Rings website to Google Calendar",
+  "description": "Export your shifts booked on the Three Rings website to Google Calendar.",
   "version": "1.0",
   "permissions": [
     "https://www.3r.org.uk/",
