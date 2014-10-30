@@ -6,23 +6,30 @@
 
     <link rel="stylesheet" href="qunit/qunit-1.15.0.css" />
     <script src="qunit/qunit-1.15.0.js"></script>
-    <script src="../js/addToCalendar.js"></script>
+	<script src="../js/datePrototypeExtensions.js"></script>
+    <script src="../js/googleCalendarEvent.js"></script>
+	<script src="../js/addToCalendar.js"></script>
     <script>
-		var Shift = function(containerWithShiftDateTimeInfoId) {
+		var ShiftMock = function(containerWithShiftDateTimeInfoId) {
 			this.containerWithShiftDateTimeInfoId = containerWithShiftDateTimeInfoId;
+		};
+		
+		var StorageMock = function(){
+			this.get = function(data, action){
+				var items = {eventSubject:''}; 
+				action(items);
+			}
 		}
 		
-		test("AddToCalendar.WhenGettingTimeParts.ShouldBreakDownTimeParts", function(assert) {
-			var shift = new Shift("text_1_2_3_4_5_6_7");
-			var timeParts = getTimeParts(shift);
-			assert.equal(1, timeParts.startHour);
-			assert.equal(2, timeParts.startMinutes);
-			assert.equal(3, timeParts.endHour);
-			assert.equal(4, timeParts.endMinutes);
-			assert.equal(5, timeParts.startYear);
-			assert.equal(6, timeParts.startMonth);
-			assert.equal(7, timeParts.startDay);
-		})
+		function contains(largerString, substring){
+			return largerString.href.indexOf(substring) > -1;
+		}
+		
+		test("AddToCalendar.WhenShiftRollsByMidnight.ShouldAddEndDateNextDay", function (assert) {
+			var shift = new ShiftMock("week_view_rota_shift_period_day_23_00_01_00_2014_10_31");
+			var calendarLink = createAddToGoogleCalendarLink(shift, new StorageMock());
+			assert.ok(contains(calendarLink, "dates=20141031T230000Z%2F20141101T010000Z"));
+		});
     </script>
 </head>
 <body>
