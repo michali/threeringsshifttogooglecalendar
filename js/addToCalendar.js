@@ -2,11 +2,15 @@ function addToCalendarOption(){
 	var myShifts = document.getElementsByClassName('rota_shift_slot rota_shift_filled_self saved');
 	for (var i = 0, len = myShifts.length; i < len; i++) {
 		if (myShifts[i].getElementsByTagName('img').length > 0) continue;
-		var addToCalendar = createAddToGoogleCalendarLink(myShifts[i]);
-		var image = loadAddToCalendarImage();
-		addToCalendar.appendChild(image);
+		var addToCalendar = createAddToGoogleCalendarLink(new Shift(myShifts[i]));
+		addCalendarImage(addToCalendar);
 		myShifts[i].appendChild(addToCalendar);
 	}
+}
+
+function addCalendarImage(addToCalendar) {
+		var image = loadAddToCalendarImage();
+		addToCalendar.appendChild(image);
 }
 
 function createAddToGoogleCalendarLink(shift){
@@ -50,8 +54,7 @@ function getTimeParts(shift){
 }
 
 function getAllDateTimeElementsFromShiftContainer(shift) {
-	var containerWithShiftDateTimeInfo = shift.parentNode.parentNode.parentNode.parentNode;
-	var shiftTimeInfoId = containerWithShiftDateTimeInfo.id;
+	var shiftTimeInfoId = shift.containerWithShiftDateTimeInfoId;
 	return shiftTimeInfoId.match(numberPattern);
 }
 

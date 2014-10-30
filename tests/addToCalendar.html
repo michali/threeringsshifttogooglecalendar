@@ -7,9 +7,22 @@
     <link rel="stylesheet" href="qunit/qunit-1.15.0.css" />
     <script src="qunit/qunit-1.15.0.js"></script>
     <script src="../js/addToCalendar.js"></script>
-
     <script>
-    
+		var Shift = function(containerWithShiftDateTimeInfoId) {
+			this.containerWithShiftDateTimeInfoId = containerWithShiftDateTimeInfoId;
+		}
+		
+		test("AddToCalendar.WhenGettingTimeParts.ShouldBreakDownTimeParts", function(assert) {
+			var shift = new Shift("text_1_2_3_4_5_6_7");
+			var timeParts = getTimeParts(shift);
+			assert.equal(1, timeParts.startHour);
+			assert.equal(2, timeParts.startMinutes);
+			assert.equal(3, timeParts.endHour);
+			assert.equal(4, timeParts.endMinutes);
+			assert.equal(5, timeParts.startYear);
+			assert.equal(6, timeParts.startMonth);
+			assert.equal(7, timeParts.startDay);
+		})
     </script>
 </head>
 <body>

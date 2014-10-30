@@ -1003,7 +1003,7 @@ QUnit.assert = Assert.prototype = {
 	 * @example ok( "asdfasdf".length > 5, "There must be at least 5 chars" );
 	 */
 	ok: function( result, message ) {
-		message = message || ( result ? "okay" : "failed, expected argument to be truthy, was: " +
+		message = message || ( result ? "passed" : "failed, expected argument to be truthy, was: " +
 			QUnit.dump.parse( result ) );
 		if ( !!result ) {
 			this.push( true, result, true, message );
@@ -2385,7 +2385,7 @@ QUnit.log(function( details ) {
 		return;
 	}
 
-	message = escapeText( details.message ) || ( details.result ? "okay" : "failed" );
+	message = escapeText( details.message ) || ( details.result ? "passed" : "failed" );
 	message = "<span class='test-message'>" + message + "</span>";
 
 	// pushFailure doesn't provide details.expected
