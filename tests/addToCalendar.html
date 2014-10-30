@@ -30,6 +30,12 @@
 			var calendarLink = createAddToGoogleCalendarLink(shift, new StorageMock());
 			assert.ok(contains(calendarLink, "dates=20141031T230000Z%2F20141101T010000Z"));
 		});
+		
+		test("AddToCalendar.WhenShiftIsOnSameDay.EndDayShouldBeSameAsStartDay", function (assert) {
+			var shift = new ShiftMock("week_view_rota_shift_period_day_21_00_23_00_2014_10_31");
+			var calendarLink = createAddToGoogleCalendarLink(shift, new StorageMock());
+			assert.ok(contains(calendarLink, "dates=20141031T210000Z%2F20141031T230000Z"));
+		});
     </script>
 </head>
 <body>
