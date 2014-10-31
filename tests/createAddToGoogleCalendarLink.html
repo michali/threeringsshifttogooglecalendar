@@ -45,6 +45,12 @@
 			var calendarLink = createCalendarLink(shift);
 			assert.ok(contains(calendarLink, "dates=20141031T210000Z%2F20141031T230000Z"));
 		});
+		
+		test("AddToCalendar.WhenShiftTakesPlaceOnNextCalendarDayButBeforeEndOfRotaDay.ShiftShouldBePlacedOnNextCalendarDay", function (assert) {
+			var shift = createShiftMockWithId("week_view_rota_shift_period_day_01_00_04_00_2014_10_31");
+			var calendarLink = createCalendarLink(shift);
+			assert.ok(contains(calendarLink, "dates=20141101T010000Z%2F20141101T040000Z"));
+		});
     </script>
 </head>
 <body>

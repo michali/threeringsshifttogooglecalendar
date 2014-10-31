@@ -10,9 +10,9 @@ function createAddToGoogleCalendarLink(shift, storage){
 	var startDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.startHour, timeParts.startMinutes, 0, 0);
 	var endDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.endHour, timeParts.endMinutes, 0, 0);
 
-	if (shiftIncludesMidnight(startDate, endDate)) {	
+	if (shiftEndsNextDay(startDate, endDate)) {	
 		endDate = endDate.addDays(1);
-	}	
+	}
 	
 	storage.get({eventSubject: ''}, function(items) {
 		var event = new GoogleCalendarEvent(startDate, endDate, items.eventSubject);
@@ -22,7 +22,7 @@ function createAddToGoogleCalendarLink(shift, storage){
 	return addToCalendar;
 }
 
-function shiftIncludesMidnight(startDate, endDate){
+function shiftEndsNextDay(startDate, endDate){
 	return endDate.valueOf() < startDate.valueOf()
 }
 
