@@ -11,14 +11,23 @@
 	<script src="../js/addToCalendar.js"></script>
     <script>
 		var ShiftMock = function(containerWithShiftDateTimeInfoId) {
-			this.containerWithShiftDateTimeInfoId = containerWithShiftDateTimeInfoId;
 		};
 		
-		var StorageMock = function(){
-			this.get = function(data, action){
-				var items = {eventSubject:''}; 
-				action(items);
+		function createShiftMockWithId(containerWithShiftDateTimeInfoId){
+			var shiftMock = new ShiftMock();
+			shiftMock.containerWithShiftDateTimeInfoId = containerWithShiftDateTimeInfoId;
+			return shiftMock;
+		};
+		
+	
+		function createCalendarLink(shift) {
+			var StorageMock = function(){
+				this.get = function(data, action){
+					var items = {eventSubject:''}; 
+					action(items);
+				}
 			}
+			return createAddToGoogleCalendarLink(shift, new StorageMock());
 		}
 		
 		function contains(largerString, substring){
@@ -26,14 +35,14 @@
 		}
 		
 		test("AddToCalendar.WhenShiftRollsByMidnight.ShouldAddEndDateNextDay", function (assert) {
-			var shift = new ShiftMock("week_view_rota_shift_period_day_23_00_01_00_2014_10_31");
-			var calendarLink = createAddToGoogleCalendarLink(shift, new StorageMock());
+			var shift = createShiftMockWithId("week_view_rota_shift_period_day_23_00_01_00_2014_10_31");
+			var calendarLink = createCalendarLink(shift);
 			assert.ok(contains(calendarLink, "dates=20141031T230000Z%2F20141101T010000Z"));
 		});
 		
 		test("AddToCalendar.WhenShiftIsOnSameDay.EndDayShouldBeSameAsStartDay", function (assert) {
-			var shift = new ShiftMock("week_view_rota_shift_period_day_21_00_23_00_2014_10_31");
-			var calendarLink = createAddToGoogleCalendarLink(shift, new StorageMock());
+			var shift = createShiftMockWithId("week_view_rota_shift_period_day_21_00_23_00_2014_10_31");
+			var calendarLink = createCalendarLink(shift);
 			assert.ok(contains(calendarLink, "dates=20141031T210000Z%2F20141031T230000Z"));
 		});
     </script>
