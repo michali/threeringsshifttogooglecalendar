@@ -10,7 +10,12 @@ function createAddToGoogleCalendarLink(shift, storage){
 	var startDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.startHour, timeParts.startMinutes, 0, 0);
 	var endDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.endHour, timeParts.endMinutes, 0, 0);
 
-	if (shiftEndsNextDay(startDate, endDate)) {	
+	if (shiftEndsOnNextCalendarDay(startDate, endDate)) {	
+		endDate = endDate.addDays(1);
+	}
+	
+	if (startsOnNextCalendarDayButIsOnOrganizationDay(shift)) {
+		startDate = startDate.addDays(1);
 		endDate = endDate.addDays(1);
 	}
 	
@@ -22,8 +27,17 @@ function createAddToGoogleCalendarLink(shift, storage){
 	return addToCalendar;
 }
 
-function shiftEndsNextDay(startDate, endDate){
+var hour = /\d{2}:\d{2}/
+
+function shiftEndsOnNextCalendarDay(startDate, endDate){
 	return endDate.valueOf() < startDate.valueOf()
+}
+
+function startsOnNextCalendarDayButIsOnOrganizationDay(shift) {
+	var shiftStartHour = shift.hourSpanAbbr.match(hour);
+	var previousShiftStartHour = shift.previousHourSpanAbbr.match(hour);
+	
+	return shiftStartHour < previousShiftStartHour;
 }
 
 function getTimeParts(shift){
