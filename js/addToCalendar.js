@@ -9,10 +9,10 @@ function createAddToGoogleCalendarLink(shift, storage){
 	var startDate = new Date(shift.startYear, shift.startMonth - 1, shift.startDay, shift.startHour, 0, 0, 0);
 	var endDate = new Date(shift.startYear, shift.startMonth - 1, shift.startDay, shift.endHour, 0, 0, 0);
 
-	if (shiftEndsOnNextCalendarDay(startDate, endDate)) {	
+	if (shiftEndsOnNextCalendarDay(startDate, endDate)) {
 		endDate = endDate.addDays(1);
 	}
-	
+
 	if (shiftTakesPlaceOnCalendarDayAfterCurrentRotaDay(shift)) {
 		startDate = startDate.addDays(1);
 		endDate = endDate.addDays(1);

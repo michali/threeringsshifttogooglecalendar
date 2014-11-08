@@ -25,8 +25,8 @@
 			return createAddToGoogleCalendarLink(shift, new StorageMock());
 		}
 		
-		function contains(largerString, substring){
-			return largerString.href.indexOf(substring) > -1;
+		function hrefContains(link, substring){
+			return link.href.indexOf(substring) > -1;
 		}
 		
 		test("WeekView_AddToCalendar.WhenShiftRollsByMidnight.ShouldAddEndDateNextDay", function (assert) {
@@ -40,7 +40,7 @@
 			shift.endDay = 1;
 			shift.endHour = 1;
 			var calendarLink = createCalendarLink(shift);
-			assert.ok(contains(calendarLink, "dates=20141031T230000Z%2F20141101T010000Z"));
+			assert.ok(hrefContains(calendarLink, "dates=20141031T230000Z%2F20141101T010000Z"));
 		});
 		
 		test("WeekView_AddToCalendar.WhenShiftIsOnSameDay.EndDayShouldBeSameAsStartDay", function (assert) {
@@ -54,7 +54,7 @@
 			shift.endDay = 31;
 			shift.endHour = 23;
 			var calendarLink = createCalendarLink(shift);
-			assert.ok(contains(calendarLink, "dates=20141031T210000Z%2F20141031T230000Z"));
+			assert.ok(hrefContains(calendarLink, "dates=20141031T210000Z%2F20141031T230000Z"));
 		});
 		
 		test("WeekView_AddToCalendar.WhenShiftIsFirstOfCalendarDayButBeforeEndOfRotaDay.ShiftShouldBePlacedOnNextCalendarDay", function (assert) {
@@ -69,7 +69,7 @@
 			shift.endHour = 4;
 			shift.firstShiftOfDayStartHour = 7;
 			var calendarLink = createCalendarLink(shift);
-			assert.ok(contains(calendarLink, "dates=20141101T010000Z%2F20141101T040000Z"));
+			assert.ok(hrefContains(calendarLink, "dates=20141101T010000Z%2F20141101T040000Z"));
 		});
 		
 		test("WeekView_AddToCalendar.WhenShiftIsAfterMidnightOfCalendarDayButBeforeEndOfRotaDay.ShiftShouldBePlacedOnNextCalendarDay", function (assert) {
@@ -84,7 +84,7 @@
 			shift.endHour = 6;
 			shift.firstShiftOfDayStartHour = 7;
 			var calendarLink = createCalendarLink(shift);
-			assert.ok(contains(calendarLink, "dates=20141101T050000Z%2F20141101T060000Z"), calendarLink);
+			assert.ok(hrefContains(calendarLink, "dates=20141101T050000Z%2F20141101T060000Z"), calendarLink);
 		});
     </script>
 </head>
