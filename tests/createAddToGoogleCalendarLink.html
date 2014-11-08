@@ -67,13 +67,24 @@
 			shift.endMonth = 10;
 			shift.endDay = 31;
 			shift.endHour = 4;
-			shift.previousHour = 23;
+			shift.firstShiftOfDayStartHour = 7;
 			var calendarLink = createCalendarLink(shift);
-			assert.ok(contains(calendarLink, "dates=20141101T010000Z%2F20141101T040000Z"), calendarLink);
+			assert.ok(contains(calendarLink, "dates=20141101T010000Z%2F20141101T040000Z"));
 		});
 		
 		test("WeekView_AddToCalendar.WhenShiftIsAfterMidnightOfCalendarDayButBeforeEndOfRotaDay.ShiftShouldBePlacedOnNextCalendarDay", function (assert) {
-			
+			var shift = new ShiftMock();
+			shift.startYear = 2014;
+			shift.startMonth = 10;
+			shift.startDay = 31;
+			shift.startHour = 5;
+			shift.endYear = 2014;
+			shift.endMonth = 10;
+			shift.endDay = 31;
+			shift.endHour = 6;
+			shift.firstShiftOfDayStartHour = 7;
+			var calendarLink = createCalendarLink(shift);
+			assert.ok(contains(calendarLink, "dates=20141101T050000Z%2F20141101T060000Z"), calendarLink);
 		});
     </script>
 </head>

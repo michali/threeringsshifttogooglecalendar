@@ -4,8 +4,8 @@ function addCalendarImage(addToCalendar) {
 }
 
 function createAddToGoogleCalendarLink(shift, storage){
-	var addToCalendar = document.createElement('a');
-	addToCalendar.setAttribute('title', 'Add to Google Calendar');
+	var addToCalendarLink = document.createElement('a');
+	addToCalendarLink.setAttribute('title', 'Add to Google Calendar');
 	var startDate = new Date(shift.startYear, shift.startMonth - 1, shift.startDay, shift.startHour, 0, 0, 0);
 	var endDate = new Date(shift.startYear, shift.startMonth - 1, shift.startDay, shift.endHour, 0, 0, 0);
 
@@ -13,25 +13,25 @@ function createAddToGoogleCalendarLink(shift, storage){
 		endDate = endDate.addDays(1);
 	}
 	
-	if (startsOnNextCalendarDayButIsOnRotaDay(shift)) {
+	if (shiftTakesPlaceOnCalendarDayAfterCurrentRotaDay(shift)) {
 		startDate = startDate.addDays(1);
 		endDate = endDate.addDays(1);
-	}
+	}	
 	
 	storage.get({eventSubject: ''}, function(items) {
 		var event = new GoogleCalendarEvent(startDate, endDate, items.eventSubject);
-		addToCalendar.setAttribute('href', event.toLink());
+		addToCalendarLink.setAttribute('href', event.toLink());
 	});
  		
-	return addToCalendar;
+	return addToCalendarLink;
+}
+
+function shiftTakesPlaceOnCalendarDayAfterCurrentRotaDay(shift) {
+	return shift.firstShiftOfDayStartHour > shift.startHour;
 }
 
 function shiftEndsOnNextCalendarDay(startDate, endDate){
 	return endDate.valueOf() < startDate.valueOf()
-}
-
-function startsOnNextCalendarDayButIsOnRotaDay(shift) {
-	return shift.startHour < shift.previousHour;
 }
 
 function loadAddToCalendarImage(){
