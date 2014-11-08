@@ -1,6 +1,6 @@
-function addCalendarImage(addToCalendar) {
+function addCalendarImage(addToCalendarLink) {
 		var image = loadAddToCalendarImage();
-		addToCalendar.appendChild(image);
+		addToCalendarLink.appendChild(image);
 }
 
 function createAddToGoogleCalendarLink(shift, storage){

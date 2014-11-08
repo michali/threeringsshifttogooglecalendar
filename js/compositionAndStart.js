@@ -3,9 +3,9 @@ function addToCalendarOption(){
 	var storage = new Storage();
 	for (var i = 0, len = myShifts.length; i < len; i++) {
 		if (myShifts[i].getElementsByTagName('img').length > 0) continue;
-		var addToCalendar = createAddToGoogleCalendarLink(new Shift(myShifts[i]), storage);
-		addCalendarImage(addToCalendar);
-		myShifts[i].appendChild(addToCalendar);
+		var addToCalendarLink = createAddToGoogleCalendarLink(new Shift(myShifts[i]), storage);
+		addCalendarImage(addToCalendarLink);
+		myShifts[i].appendChild(addToCalendarLink);
 	}
 }
 
