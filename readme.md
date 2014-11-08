@@ -16,7 +16,7 @@ Unpacked Extension
 
 Issues
 -----
-No known issues at this time. Please let us know using the issue tracker. The extension navigates the DOM and extracts dates using the names and name formats of existing style sheet ID and classes in the Rota tab of the site. If any of these changes the icon will stop appearing or the export-an-event link will be broken and a new release will have to be made.
+No known issues at this time. If you find any issues please let us know using the issue tracker. The extension navigates the DOM and extracts dates using the names and name formats of existing style sheet ID and classes in the Rota tab of the site. If any of these changes the icon will stop appearing or the export-an-event link will be broken and a new release will have to be made.
 
 Not done
 -----

@@ -10,17 +10,10 @@
     <script src="../js/googleCalendarEvent.js"></script>
 	<script src="../js/addToCalendar.js"></script>
     <script>
-		var ShiftMock = function(containerWithShiftDateTimeInfoId) {
-			this.hourSpanAbbr = "";
-			this.previousHourSpanAbbr = "";
-		};
-		
-		function createShiftMockWithId(containerWithShiftDateTimeInfoId){
-			var shiftMock = new ShiftMock();
-			shiftMock.containerWithShiftDateTimeInfoId = containerWithShiftDateTimeInfoId;
-			return shiftMock;
-		};
-		
+		var ShiftMock = function() {
+			this.startHour = 0;
+			this.previousHour = 0;
+		};	
 	
 		function createCalendarLink(shift) {
 			var StorageMock = function(){
@@ -36,24 +29,51 @@
 			return largerString.href.indexOf(substring) > -1;
 		}
 		
-		test("AddToCalendar.WhenShiftRollsByMidnight.ShouldAddEndDateNextDay", function (assert) {
-			var shift = createShiftMockWithId("week_view_rota_shift_period_day_23_00_01_00_2014_10_31");
+		test("WeekView_AddToCalendar.WhenShiftRollsByMidnight.ShouldAddEndDateNextDay", function (assert) {
+			var shift = new ShiftMock();
+			shift.startYear = 2014;
+			shift.startMonth = 10;
+			shift.startDay = 31;
+			shift.startHour = 23;
+			shift.endYear = 2014;
+			shift.endMonth = 11;
+			shift.endDay = 1;
+			shift.endHour = 1;
 			var calendarLink = createCalendarLink(shift);
 			assert.ok(contains(calendarLink, "dates=20141031T230000Z%2F20141101T010000Z"));
 		});
 		
-		test("AddToCalendar.WhenShiftIsOnSameDay.EndDayShouldBeSameAsStartDay", function (assert) {
-			var shift = createShiftMockWithId("week_view_rota_shift_period_day_21_00_23_00_2014_10_31");
+		test("WeekView_AddToCalendar.WhenShiftIsOnSameDay.EndDayShouldBeSameAsStartDay", function (assert) {
+			var shift = new ShiftMock();
+			shift.startYear = 2014;
+			shift.startMonth = 10;
+			shift.startDay = 31;
+			shift.startHour = 21;
+			shift.endYear = 2014;
+			shift.endMonth = 10;
+			shift.endDay = 31;
+			shift.endHour = 23;
 			var calendarLink = createCalendarLink(shift);
 			assert.ok(contains(calendarLink, "dates=20141031T210000Z%2F20141031T230000Z"));
 		});
 		
-		test("AddToCalendar.WhenShiftTakesPlaceOnNextCalendarDayButBeforeEndOfRotaDay.ShiftShouldBePlacedOnNextCalendarDay", function (assert) {
-			var shift = createShiftMockWithId("week_view_rota_shift_period_day_01_00_04_00_2014_10_31");
-			shift.hourSpanAbbr = "01:00 to 04:00";
-			shift.previousHourSpanAbbr = "23:00 to 01:00";
+		test("WeekView_AddToCalendar.WhenShiftIsFirstOfCalendarDayButBeforeEndOfRotaDay.ShiftShouldBePlacedOnNextCalendarDay", function (assert) {
+			var shift = new ShiftMock();
+			shift.startYear = 2014;
+			shift.startMonth = 10;
+			shift.startDay = 31;
+			shift.startHour = 1;
+			shift.endYear = 2014;
+			shift.endMonth = 10;
+			shift.endDay = 31;
+			shift.endHour = 4;
+			shift.previousHour = 23;
 			var calendarLink = createCalendarLink(shift);
-			assert.ok(contains(calendarLink, "dates=20141101T010000Z%2F20141101T040000Z"));
+			assert.ok(contains(calendarLink, "dates=20141101T010000Z%2F20141101T040000Z"), calendarLink);
+		});
+		
+		test("WeekView_AddToCalendar.WhenShiftIsAfterMidnightOfCalendarDayButBeforeEndOfRotaDay.ShiftShouldBePlacedOnNextCalendarDay", function (assert) {
+			
 		});
     </script>
 </head>

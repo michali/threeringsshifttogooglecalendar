@@ -6,15 +6,14 @@ function addCalendarImage(addToCalendar) {
 function createAddToGoogleCalendarLink(shift, storage){
 	var addToCalendar = document.createElement('a');
 	addToCalendar.setAttribute('title', 'Add to Google Calendar');
-	var timeParts = getTimeParts(shift);
-	var startDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.startHour, timeParts.startMinutes, 0, 0);
-	var endDate = new Date(timeParts.startYear, timeParts.startMonth - 1, timeParts.startDay, timeParts.endHour, timeParts.endMinutes, 0, 0);
+	var startDate = new Date(shift.startYear, shift.startMonth - 1, shift.startDay, shift.startHour, 0, 0, 0);
+	var endDate = new Date(shift.startYear, shift.startMonth - 1, shift.startDay, shift.endHour, 0, 0, 0);
 
 	if (shiftEndsOnNextCalendarDay(startDate, endDate)) {	
 		endDate = endDate.addDays(1);
 	}
 	
-	if (startsOnNextCalendarDayButIsOnOrganizationDay(shift)) {
+	if (startsOnNextCalendarDayButIsOnRotaDay(shift)) {
 		startDate = startDate.addDays(1);
 		endDate = endDate.addDays(1);
 	}
@@ -27,37 +26,12 @@ function createAddToGoogleCalendarLink(shift, storage){
 	return addToCalendar;
 }
 
-var hour = /\d{2}:\d{2}/
-
 function shiftEndsOnNextCalendarDay(startDate, endDate){
 	return endDate.valueOf() < startDate.valueOf()
 }
 
-function startsOnNextCalendarDayButIsOnOrganizationDay(shift) {
-	var shiftStartHour = shift.hourSpanAbbr.match(hour);
-	var previousShiftStartHour = shift.previousHourSpanAbbr.match(hour);
-	
-	return shiftStartHour < previousShiftStartHour;
-}
-
-function getTimeParts(shift){
-	var dateTimeElements = getAllDateTimeElementsFromShiftContainer(shift);
-	return {
-		startHour: dateTimeElements[0], 
-		startMinutes: dateTimeElements[1], 
-		endHour: dateTimeElements[2], 
-		endMinutes: dateTimeElements[3],
-		startYear: dateTimeElements[4],
-		startMonth: dateTimeElements[5],
-		startDay: dateTimeElements[6]
-	}
-}
-
-var numberPattern = /\d+/g;
-
-function getAllDateTimeElementsFromShiftContainer(shift) {
-	var shiftTimeInfoId = shift.containerWithShiftDateTimeInfoId;
-	return shiftTimeInfoId.match(numberPattern);
+function startsOnNextCalendarDayButIsOnRotaDay(shift) {
+	return shift.startHour < shift.previousHour;
 }
 
 function loadAddToCalendarImage(){
