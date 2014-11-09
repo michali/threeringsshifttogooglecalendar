@@ -13,7 +13,7 @@ function save_options() {
 
 function restore_options() {
   chrome.storage.sync.get({
-    eventSubject: 'Shift'
+    eventSubject: 'WeekShiftView'
   }, function(items) {
     document.getElementById('eventSubject').value = items.eventSubject;
   });

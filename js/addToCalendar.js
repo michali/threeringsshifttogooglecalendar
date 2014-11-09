@@ -3,6 +3,12 @@ function addCalendarImage(addToCalendarLink) {
 		addToCalendarLink.appendChild(image);
 }
 
+function loadAddToCalendarImage(){
+	var image = document.createElement('img');
+	image.setAttribute('src', chrome.extension.getURL('images/googlecalendar.png'));
+	return image;
+}
+
 function getShiftCalendarDates(shift) {
 	var startDate = new Date(shift.startYear, shift.startMonth - 1, shift.startDay, shift.startHour, 0, 0, 0);
 	var endDate = new Date(shift.startYear, shift.startMonth - 1, shift.startDay, shift.endHour, 0, 0, 0);
@@ -38,8 +44,3 @@ function shiftEndsOnNextCalendarDay(startDate, endDate){
 	return endDate.valueOf() < startDate.valueOf()
 }
 
-function loadAddToCalendarImage(){
-	var image = document.createElement('img');
-	image.setAttribute('src', chrome.extension.getURL('images/googlecalendar.png'));
-	return image;
-}
