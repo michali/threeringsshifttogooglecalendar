@@ -1,6 +1,5 @@
 function WeekShiftView() {
 	var shiftNode = document.getElementsByClassName('rota_shift_slot rota_shift_filled_self saved');
-	//this.containerWithShiftDateTimeInfoId = shiftNode.parentNode.parentNode.parentNode.parentNode.id;
 }
 
 function FortnightShiftView() {
@@ -11,16 +10,23 @@ function MonthShiftView() {
 
 }
 
-function ViewFinder(tabAccessor) {
-	this.findView = function(){
-		if (tabAccessor.getViewFromQueryString() == "fortnight"){
+function ViewFinder() {
+	this.findView = function(url){
+		var viewPattern = /style=\w+/;
+		var viewParams = url.match(viewPattern);
+
+		if (viewParams[0].endsWith("fortnight")){
 			return new FortnightShiftView();
 		}
 
-		if (tabAccessor.getViewFromQueryString() == "month"){
+		if (viewParams[0].endsWith("month")){
 			return new MonthShiftView();
 		}
 
 		return new WeekShiftView();
 	}
+}
+
+function getMyShifts(){
+	return document.getElementsByClassName('rota_shift_slot rota_shift_filled_self saved');
 }

@@ -12,7 +12,13 @@
   "content_scripts": [
     {
 	  "matches": ["https://www.3r.org.uk/rota*"],
-      "js": ["js/datePrototypeExtensions.js", "js/googleCalendarEvent.js", "js/shiftViews.js", "js/storage.js", "js/addToCalendar.js", "js/compositionAndStart.js"]
+      "js": ["js/extensions.js",
+        "js/googleCalendarEvent.js",
+        "js/shiftViews.js",
+        "js/storage.js",
+        "js/addToCalendar.js",
+        "js/tabs.js",
+        "js/compositionAndStart.js"]
     }
   ],
   "web_accessible_resources": ["images/googlecalendar.png"],

@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="qunit/qunit-1.15.0.css" />
     <script src="qunit/qunit-1.15.0.js"></script>
-	<script src="../js/datePrototypeExtensions.js"></script>
+	<script src="../js/extensions.js"></script>
     <script src="../js/googleCalendarEvent.js"></script>
 	<script src="../js/addToCalendar.js"></script>
 	<script src="../js/shiftViews.js"></script>
@@ -89,41 +89,25 @@
 		});
 
 		test("ViewFind.WhenWeekViewIsRequested.ReturnWeekView", function(assert){
-			var tabAccessor = {
-				getViewFromQueryString : function (){
-					return "week";
-				}
-			}
+			var viewFinder = new ViewFinder();
 
-			var viewFinder = new ViewFinder(tabAccessor);
-
-			var result = viewFinder.findView();
+			var result = viewFinder.findView("http://go.to.url?style=week");
 
 			assert.ok(result.constructor.name == "WeekShiftView");
 		});
 
 		test("ViewFind.WhenFortnightViewIsRequested.ReturnFortnightView", function(assert){
-			var tabAccessor = {
-				getViewFromQueryString : function (){
-					return "fortnight";
-				}
-			}
-			var viewFinder = new ViewFinder(tabAccessor);
+			var viewFinder = new ViewFinder();
 
-			var result = viewFinder.findView();
+			var result = viewFinder.findView("http://go.to.url?style=fortnight");
 
 			assert.ok(result.constructor.name == "FortnightShiftView");
 		});
 
 		test("ViewFind.WhenMonthViewIsRequested.ReturnMonthView", function(assert){
-			var tabAccessor = {
-				getViewFromQueryString : function (){
-					return "month";
-				}
-			}
-			var viewFinder = new ViewFinder(tabAccessor);
+			var viewFinder = new ViewFinder();
 
-			var result = viewFinder.findView();
+			var result = viewFinder.findView("http://go.to.url?style=month");
 
 			assert.ok(result.constructor.name == "MonthShiftView");
 		});

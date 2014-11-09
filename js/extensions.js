@@ -10,3 +10,7 @@ Date.prototype.toIsoStringNoHyphensColonsMiliseconds = function(days) {
     var noSymbolsIsoDate = isoDate.replace(/\:/g,'').replace(/-/g,'').replace('.000','');
 	return noSymbolsIsoDate;
 }
+
+String.prototype.endsWith = function (s) {
+    return this.length >= s.length && this.substr(this.length - s.length) == s;
+}
