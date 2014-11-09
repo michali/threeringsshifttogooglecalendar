@@ -6,7 +6,8 @@
   "permissions": [
     "https://www.3r.org.uk/",
 	"https://www.google.com/calendar",
-    "storage"
+    "storage",
+	"tabs"
   ],
   "content_scripts": [
     {
