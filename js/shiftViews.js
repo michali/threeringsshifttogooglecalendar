@@ -10,3 +10,17 @@ function FortnightShiftView() {
 function MonthShiftView() {
 
 }
+
+function ViewFinder(tabAccessor) {
+	this.findView = function(){
+		if (tabAccessor.getViewFromQueryString() == "fortnight"){
+			return new FortnightShiftView();
+		}
+
+		if (tabAccessor.getViewFromQueryString() == "month"){
+			return new MonthShiftView();
+		}
+
+		return new WeekShiftView();
+	}
+}
