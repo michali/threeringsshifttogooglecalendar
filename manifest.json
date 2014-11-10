@@ -6,18 +6,17 @@
   "permissions": [
     "https://www.3r.org.uk/",
 	"https://www.google.com/calendar",
-    "storage",
-	"tabs"
+    "storage"
   ],
   "content_scripts": [
     {
 	  "matches": ["https://www.3r.org.uk/rota*"],
       "js": ["js/extensions.js",
+        "js/documentAccessor.js",
         "js/googleCalendarEvent.js",
         "js/shiftViews.js",
         "js/storage.js",
         "js/addToCalendar.js",
-        "js/tabs.js",
         "js/compositionAndStart.js"]
     }
   ],

@@ -12,9 +12,7 @@
 	<script src="../js/shiftViews.js"></script>
     <script>
 		var ShiftMock = function() {
-			this.startHour = 0;
-			this.previousHour = 0;
-		};	
+		};
 	
 		function createCalendarLink(shift) {
 			var StorageMock = function(){
@@ -32,13 +30,10 @@
 		
 		test("AddToCalendar.WhenShiftRollsByMidnight.ShouldAddEndDateNextDay", function (assert) {
 			var shift = new ShiftMock();
-			shift.startYear = 2014;
-			shift.startMonth = 10;
-			shift.startDay = 31;
+			shift.year = 2014;
+			shift.month = 10;
+			shift.day = 31;
 			shift.startHour = 23;
-			shift.endYear = 2014;
-			shift.endMonth = 11;
-			shift.endDay = 1;
 			shift.endHour = 1;
 			var calendarLink = createCalendarLink(shift);
 			assert.ok(hrefContains(calendarLink, "dates=20141031T230000Z%2F20141101T010000Z"));
@@ -46,13 +41,10 @@
 		
 		test("AddToCalendar.WhenShiftIsOnSameDay.EndDayShouldBeSameAsStartDay", function (assert) {
 			var shift = new ShiftMock();
-			shift.startYear = 2014;
-			shift.startMonth = 10;
-			shift.startDay = 31;
+			shift.year = 2014;
+			shift.month = 10;
+			shift.day = 31;
 			shift.startHour = 21;
-			shift.endYear = 2014;
-			shift.endMonth = 10;
-			shift.endDay = 31;
 			shift.endHour = 23;
 			var calendarLink = createCalendarLink(shift);
 			assert.ok(hrefContains(calendarLink, "dates=20141031T210000Z%2F20141031T230000Z"));
@@ -60,13 +52,10 @@
 		
 		test("AddToCalendar.WhenShiftIsFirstOfCalendarDayButBeforeEndOfRotaDay.ShiftShouldBePlacedOnNextCalendarDay", function (assert) {
 			var shift = new ShiftMock();
-			shift.startYear = 2014;
-			shift.startMonth = 10;
-			shift.startDay = 31;
+			shift.year = 2014;
+			shift.month = 10;
+			shift.day = 31;
 			shift.startHour = 1;
-			shift.endYear = 2014;
-			shift.endMonth = 10;
-			shift.endDay = 31;
 			shift.endHour = 4;
 			shift.firstShiftOfDayStartHour = 7;
 			var calendarLink = createCalendarLink(shift);
@@ -75,13 +64,10 @@
 		
 		test("AddToCalendar.WhenShiftIsAfterMidnightOfCalendarDayButBeforeEndOfRotaDay.ShiftShouldBePlacedOnNextCalendarDay", function (assert) {
 			var shift = new ShiftMock();
-			shift.startYear = 2014;
-			shift.startMonth = 10;
-			shift.startDay = 31;
+			shift.year = 2014;
+			shift.month = 10;
+			shift.day = 31;
 			shift.startHour = 5;
-			shift.endYear = 2014;
-			shift.endMonth = 10;
-			shift.endDay = 31;
 			shift.endHour = 6;
 			shift.firstShiftOfDayStartHour = 7;
 			var calendarLink = createCalendarLink(shift);
@@ -89,25 +75,25 @@
 		});
 
 		test("ViewFind.WhenWeekViewIsRequested.ReturnWeekView", function(assert){
-			var viewFinder = new ViewFinder();
+			var viewFinder = new ViewFinder("http://go.to.url?style=week");
 
-			var result = viewFinder.findView("http://go.to.url?style=week");
+			var result = viewFinder.findView();
 
 			assert.ok(result.constructor.name == "WeekShiftView");
 		});
 
 		test("ViewFind.WhenFortnightViewIsRequested.ReturnFortnightView", function(assert){
-			var viewFinder = new ViewFinder();
+			var viewFinder = new ViewFinder("http://go.to.url?style=fortnight");
 
-			var result = viewFinder.findView("http://go.to.url?style=fortnight");
+			var result = viewFinder.findView();
 
 			assert.ok(result.constructor.name == "FortnightShiftView");
 		});
 
 		test("ViewFind.WhenMonthViewIsRequested.ReturnMonthView", function(assert){
-			var viewFinder = new ViewFinder();
+			var viewFinder = new ViewFinder("http://go.to.url?style=month");
 
-			var result = viewFinder.findView("http://go.to.url?style=month");
+			var result = viewFinder.findView();
 
 			assert.ok(result.constructor.name == "MonthShiftView");
 		});

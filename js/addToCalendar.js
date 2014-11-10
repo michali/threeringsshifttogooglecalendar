@@ -10,8 +10,8 @@ function loadAddToCalendarImage(){
 }
 
 function getShiftCalendarDates(shift) {
-	var startDate = new Date(shift.startYear, shift.startMonth - 1, shift.startDay, shift.startHour, 0, 0, 0);
-	var endDate = new Date(shift.startYear, shift.startMonth - 1, shift.startDay, shift.endHour, 0, 0, 0);
+	var startDate = new Date(shift.year, shift.month - 1, shift.day, shift.startHour, 0, 0, 0);
+	var endDate = new Date(shift.year, shift.month - 1, shift.day, shift.endHour, 0, 0, 0);
 
 	if (shiftEndsOnNextCalendarDay(startDate, endDate)) {
 		endDate = endDate.addDays(1);
