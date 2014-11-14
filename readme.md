@@ -24,4 +24,4 @@ No known issues at this time. If you find any please let us know using the issue
 Not done
 -----
 * At this point, the extension is not intelligent enough to detect that you have a double or a triple shift, so you need to export each part of such a shift in a row.
-* If you export and import the iCalendar file from your shifts page, the calendar event's subject will be populated with the type of shift in relatio nto the time of day (day shift, late shift, night shift etc) and the name of your shift partner if you're booking the slot second. The extension doesn't do that but it provides a default subject for the shift event which you can override via the Options page.
+* If you export and import the iCalendar file from your shifts page, the calendar event's subject will be populated with the type of shift in relation to the time of day (day shift, late shift, night shift etc) and the name of your shift partner if you're booking the slot second. The extension doesn't do that but it provides a default subject for the shift event which you can override via the Options page.
