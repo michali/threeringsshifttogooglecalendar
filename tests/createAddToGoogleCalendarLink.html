@@ -75,27 +75,19 @@
 		});
 
 		test("ViewFind.WhenWeekViewIsRequested.ReturnWeekView", function(assert){
-			var viewFinder = new ViewFinder("http://go.to.url?style=week");
+			var viewFinder = new ViewFinder();
 
-			var result = viewFinder.findView();
+			var result = viewFinder.findView("http://go.to.url?style=week");
 
 			assert.ok(result.constructor.name == "WeekShiftView");
 		});
 
-		test("ViewFind.WhenFortnightViewIsRequested.ReturnFortnightView", function(assert){
-			var viewFinder = new ViewFinder("http://go.to.url?style=fortnight");
+		test("ViewFind.WhenNonWeekViewIsRequested.ReturnFortnightView", function(assert){
+			var viewFinder = new ViewFinder();
 
-			var result = viewFinder.findView();
+			var result = viewFinder.findView("http://go.to.url?style=fortnight");
 
-			assert.ok(result.constructor.name == "FortnightShiftView");
-		});
-
-		test("ViewFind.WhenMonthViewIsRequested.ReturnMonthView", function(assert){
-			var viewFinder = new ViewFinder("http://go.to.url?style=month");
-
-			var result = viewFinder.findView();
-
-			assert.ok(result.constructor.name == "MonthShiftView");
+			assert.ok(result.constructor.name == "NonWeekShiftView");
 		});
     </script>
 </head>
