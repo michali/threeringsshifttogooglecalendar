@@ -21,6 +21,8 @@ Issues
 -----
 No known issues at this time. If you find any please let us know using the issue tracker. The extension navigates the DOM and extracts dates using the names and name formats of existing style sheet ID and class names in the Rota tab of the site. If any of these changes the icon will stop appearing or the export-a-shift link will be broken and a new release will have to be made.
 
+Also, different charities have different visual themes. If these themes come with different class names and HTML layouts, the extension may break, so in that sense it's got some road to go. If that happens with you, let me know.
+
 Not done
 -----
 * At this point, the extension is not intelligent enough to detect that you have a double or a triple shift, so you need to export each part of such a shift in a row.
