@@ -4,7 +4,7 @@ An extension to export the logged-on user's shifts to Google Calendar.
 
 If you volunteer for an organisation that uses the Three Rings platform to manage duty rotas, this will add an icon next to your booked shifts. Clicking on it will take you to Google Calendar's create-an-event-page with the subject and start and end times filled out.
 
-Three Rings already supports exporting shifts. However, this is currently done by exporting an iCalendar data file from your shifts page. This is good if you have booked many shifts up front as you can then import all of them to Google Calendar or Outlook at once. This extension adds extra convenience if you've booked one or two shifts and want to export them without downloading an iCalendar file and then reuploading it to Google Calendar.
+Three Rings already supports exporting shifts. However, this is currently done by exporting an iCalendar data file from your shifts page. This is good if you have booked many shifts up front as you can then import all of them to Google Calendar or Outlook at once. You can also add a separate calendar to Google that is always in sync. This extension adds extra convenience if you've booked one or two shifts and want to export them into your main calendar without downloading an iCalendar file and then reuploading it to Google Calendar.
 
 Installing
 -----
