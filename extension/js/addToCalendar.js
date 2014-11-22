@@ -28,7 +28,7 @@ function createAddToGoogleCalendarLink(shift, storage) {
 	var addToCalendarLink = document.createElement('a');
 	addToCalendarLink.setAttribute('title', 'Add to Google Calendar');
 	var shiftCalendarDates = getShiftCalendarDates(shift);
-	storage.get({eventSubject: ''}, function (items) {
+	storage.get({eventSubject: 'Shift'}, function (items) {
 		var event = new GoogleCalendarEvent(shiftCalendarDates.startDate, shiftCalendarDates.endDate, items.eventSubject);
 		addToCalendarLink.setAttribute('href', event.toLink());
 	});
