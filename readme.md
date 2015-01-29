@@ -17,6 +17,10 @@ Unpacked Extension
 * Enable the developer mode at the top right.
 * Click Load unpacked extension and select the location where you unzipped the downloaded file.
 
+Issues
+------
+If a shift takes place after midnight but within an organisation's "shift day", it will show as a shift for the previous day.
+
 Screen scraping
 -----
 The extension navigates the DOM and extracts dates using the names and name formats of existing style sheet ID and class names in the Rota tab of the site. If any of these changes the icon will stop appearing or the export-a-shift link will be broken and a new release will have to be made.
